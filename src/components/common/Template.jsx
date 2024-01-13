@@ -1,7 +1,8 @@
-import axios from 'axios'
-import React, { useState } from 'react'
+
+import React from 'react'
 import SignupForm from '../Auth/SignupForm'
 import frameImg from '../../assets/Images/frame.png'
+import LoginForm from '../Auth/LoginForm'
 
 const Template = ({ title, description1, description2, image, formType }) => {
  
@@ -21,8 +22,8 @@ const Template = ({ title, description1, description2, image, formType }) => {
               {description2}
             </span>
           </p>
-          {/* {formType === "signup" ? <SignupForm /> : <LoginForm />} */}
-          <SignupForm/>
+          {formType === "signup" ? <SignupForm /> : <LoginForm />}
+          
         </div>
         <div className="relative mx-auto w-11/12 max-w-[450px] md:mx-0">
           <img

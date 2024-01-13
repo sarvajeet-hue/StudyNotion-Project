@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+
+    token : "",
     user : {
 
         otp : "",
@@ -20,10 +22,13 @@ const userSlice = createSlice({
 
         setUserOtp : (state , action) => {
             state.user.otp = action.payload;
+        },
+        setToken : (state , action) => {
+            state.token = action.payload;
         }
     },
     
 })
 
-export const {setUser , setUserOtp} = userSlice.actions;
+export const {setUser , setUserOtp , setToken} = userSlice.actions;
 export default userSlice.reducer;
