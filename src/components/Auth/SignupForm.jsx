@@ -48,12 +48,10 @@ const SignupForm = () => {
     {/* Tab */}
     {/* <Tab tabData={tabData} field={accountType} setField={setAccountType} /> */}
     {/* Form */}
-    <form onSubmit={handleSubmit(onSubmitForm)} className="flex w-full flex-col gap-y-4">
+    <form onSubmit={handleSubmit(onSubmitForm)} className="flex w-full flex-col gap-4">
 
-      
-      <div className="flex gap-x-4">
 
-      <label>
+    <label className='flex flex-col gap-2 text-richblack-5'>
           <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
             As a<sup className="text-pink-200">*</sup>
           </p>
@@ -64,9 +62,13 @@ const SignupForm = () => {
            
             {...register("accountType")}
             placeholder="SignUp as a .."
-            className="form-style w-full"
+            className='flex p-3 items-center rounded-lg bg-richblack-800'
           />
         </label>
+      
+      <div className="flex gap-x-4 w-full">
+
+      
 
         <label>
           <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
@@ -79,7 +81,7 @@ const SignupForm = () => {
            
             {...register("firstname")}
             placeholder="Enter first name"
-            className="form-style w-full"
+            className='flex p-3 items-center rounded-lg bg-richblack-800'
           />
         </label>
         <label>
@@ -93,7 +95,7 @@ const SignupForm = () => {
             
             {...register("lastname")}
             placeholder="Enter last name"
-            className="form-style w-full"
+            className='flex p-3 items-center rounded-lg bg-richblack-800'
           />
         </label>
       </div>
@@ -108,7 +110,7 @@ const SignupForm = () => {
           
           {...register("email")}
           placeholder="Enter email address"
-          className="form-style w-full"
+          className='flex p-3 items-center rounded-lg bg-richblack-800 w-full'
         />
       </label>
       <div className="flex gap-x-4">
@@ -123,7 +125,7 @@ const SignupForm = () => {
             
             {...register("password")}
             placeholder="Enter Password"
-            className="form-style w-full !pr-10"
+            className='flex p-3 items-center rounded-lg bg-richblack-800'
           />
           <span
             onClick={() => setShowPassword((prev) => !prev)}
@@ -147,7 +149,7 @@ const SignupForm = () => {
             
             {...register("confirmpassword")}
             placeholder="Confirm Password"
-            className="form-style w-full !pr-10"
+            className='flex p-3 items-center rounded-lg bg-richblack-800'
           />
           <span
             onClick={() => setShowConfirmPassword((prev) => !prev)}
