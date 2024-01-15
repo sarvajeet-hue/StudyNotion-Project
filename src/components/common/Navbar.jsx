@@ -8,16 +8,27 @@ import { CiSearch } from "react-icons/ci";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { IoIosArrowDown } from "react-icons/io";
-import axios, { Axios } from 'axios';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 
 
 const Navbar = () => {
     //here we can use matchPath function in react router dom also
     const location = useLocation();
-    const [loggedIn , setLoggedIn] = useState(false)
+    
     const [catalogData , setCatalogData] = useState(null)
     console.log(catalogData);
+
+    const token = useSelector((state) => state.auth.token)
+
+    const user = useSelector((state) => state.user)
+
+    console.log("this is navbar user-->  ", user) 
+
+    
+    
+    console.log("Navbar Token--> " ,token);
 
     async function fetchCategoriesData(){
         try{
@@ -78,7 +89,7 @@ const Navbar = () => {
                 {/* profile-part */}
             
               {
-                  loggedIn ? (
+                  token ? (
                       <div className='flex justify-end items-center gap-5 text-richblack-5'>
                           <CiSearch className='w-[20px] h-[20px]' />
                           <AiOutlineShoppingCart className='w-[20px] h-[20px]' />

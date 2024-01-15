@@ -1,16 +1,19 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useState } from 'react'
 import {useForm} from "react-hook-form";
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import {useNavigate } from 'react-router-dom';
-import { setToken } from '../../Slices/UserSlice';
+import { setToken } from '../../Slices/auth';
+
 
 
 
 const LoginForm = () => {
 
 
+    const [loading , setLoading] = useState(true)
+    
     const dispatch = useDispatch();
     const {register , formState : {errors} , handleSubmit} = useForm();
 
@@ -20,17 +23,21 @@ const LoginForm = () => {
 
     async function onSubmitForm(data){
         console.log(data)
+       toast.loading("Loading...")
         const response = await axios.post("http://localhost:4000/api/v1/auth/login" , data);
+        toast.dismiss()
+        
+        toast.success("Logged in ")
+
         console.log("response-->",response.data)
-        if(response.data.user.token){
-            let token = response.data.user.token;
-            dispatch(setToken(token))
-        }
+        
         if(response){
-          toast.success("Logged IN Successfull")
-          console.log(response.data)
-          navigate("/dashboard")
           
+          console.log(response.data)
+          let token = response.data.token
+          dispatch(setToken(token))
+          navigate("/dashboard")
+        
           
         }else{
           toast.error("please enter correct id and pass")
