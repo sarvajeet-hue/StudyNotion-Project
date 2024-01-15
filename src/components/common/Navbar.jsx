@@ -93,8 +93,12 @@ const Navbar = () => {
                       <div className='flex justify-end items-center gap-5 text-richblack-5'>
                           <CiSearch className='w-[20px] h-[20px]' />
                           <AiOutlineShoppingCart className='w-[20px] h-[20px]' />
-                          <CgProfile className='w-[20px] h-[20px]' />
+                          <CgProfile 
+                            
+                          className='w-[20px] h-[20px]' />
                       </div>
+
+                      
                   ) :
                       (<div className='flex justify-center items-center gap-4 text-richblack-5'>
                             <Link to={"/login"}>

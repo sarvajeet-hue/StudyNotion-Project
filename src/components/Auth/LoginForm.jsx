@@ -1,11 +1,11 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {useForm} from "react-hook-form";
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import {useNavigate } from 'react-router-dom';
 import { setToken } from '../../Slices/auth';
-
+import { login } from '../../services/operations/apicalls';
 
 
 
@@ -21,28 +21,36 @@ const LoginForm = () => {
     const navigate = useNavigate();
     
 
-    async function onSubmitForm(data){
-        console.log(data)
-       toast.loading("Loading...")
-        const response = await axios.post("http://localhost:4000/api/v1/auth/login" , data);
-        toast.dismiss()
-        
-        toast.success("Logged in ")
-
-        console.log("response-->",response.data)
-        
-        if(response){
-          
-          console.log(response.data)
-          let token = response.data.token
-          dispatch(setToken(token))
-          navigate("/dashboard")
-        
-          
-        }else{
-          toast.error("please enter correct id and pass")
-        }
+    function onSubmitForm(data){
+      dispatch(login(data , navigate))
     }
+
+    // async function onSubmitForm(data){
+    //     console.log(data)
+    //     toast.loading("Loading...")
+    //     const response = await axios.post("http://localhost:4000/api/v1/auth/login" , data);
+    //     toast.dismiss()
+        
+    //     toast.success("Logged in ")
+
+    //     console.log("response-->",response.data)
+        
+    //     if(response){
+          
+    //       console.log(response.data)
+    //       let token = response.data.token
+    //       dispatch(setToken(token))
+    //       navigate("/dashboard")
+        
+          
+    //     }else{
+    //       toast.error("please enter correct id and pass")
+    //     }
+    // }
+
+    // useEffect(() => {
+    //   onSubmitForm();
+    // },[])
 
   return (
     <form onSubmit={handleSubmit(onSubmitForm)} className='mt-5 flex flex-col gap-5'>
