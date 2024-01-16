@@ -11,6 +11,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { setToken } from '../../Slices/auth';
+import { setUser } from '../../Slices/UserSlice';
 
 
 
@@ -26,9 +27,11 @@ const Navbar = () => {
 
     const token = useSelector((state) => state.auth.token)
 
-    const user = useSelector((state) => state.user)
+    const {user} = useSelector((state) => state.user)
 
-    console.log("this is navbar user-->  ", user) 
+    console.log("user-->" , user)
+
+ 
 
     console.log("image--> ", image)
     
@@ -47,8 +50,8 @@ const Navbar = () => {
     }
 
     function logoutHandler(){
-        localStorage.removeItem('token');
-        dispatch(setToken(""))
+        localStorage.removeItem('User');
+        dispatch(setUser(null))
         navigate('/login')
     }
     useEffect(() => {
@@ -102,7 +105,7 @@ const Navbar = () => {
                 {/* profile-part */}
             
               {
-                  token ? (
+                  user ? (
                       <div className='flex relative justify-end items-center gap-5 text-richblack-5'>
                           <CiSearch className='w-[20px] h-[20px]' />
                           <AiOutlineShoppingCart className='w-[20px] h-[20px]' />

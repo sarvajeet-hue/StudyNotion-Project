@@ -1,14 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-
-    
-    user : {
-
-         otp : "",
-        
-        
-    }
+    user :  localStorage.getItem("User") ? (JSON.parse(localStorage.getItem("User"))) : null
 }
 
 const userSlice = createSlice({
@@ -20,13 +13,11 @@ const userSlice = createSlice({
             
         },
 
-        setUserOtp : (state , action) => {
-            state.user.otp = action.payload;
-        },
+        
         
     },
     
 })
 
-export const {setUser , setUserOtp , setToken} = userSlice.actions;
+export const {setUser} = userSlice.actions;
 export default userSlice.reducer;

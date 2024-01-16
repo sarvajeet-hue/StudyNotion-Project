@@ -15,6 +15,7 @@ import { sendOtp } from '../../services/operations/apicalls';
 const SignupForm = () => {
 
     const [accountType , setAccountType] = useState(ACCOUNT_TYPE.STUDENT);
+    const [formData , setFormData] = useState(null)
 
     const user = useSelector((state) => state.user);
 
@@ -35,6 +36,7 @@ const SignupForm = () => {
       function onSubmitForm(data){
         dispatch(sendOtp(data , navigate ))
         console.log(data)
+        setFormData(data)
         // console.log("User" , user)
         // const email = data.email;
         // console.log("email",email);

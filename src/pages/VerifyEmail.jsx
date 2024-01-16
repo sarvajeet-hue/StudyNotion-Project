@@ -4,7 +4,7 @@ import OtpInput from 'react-otp-input';
 import {BiArrowBack} from "react-icons/bi"
 import { Link } from 'react-router-dom';
 import { useSelector , useDispatch} from 'react-redux';
-import { setUserOtp } from '../Slices/UserSlice';
+
 import axios from 'axios';
 
 
@@ -21,7 +21,7 @@ const VerifyEmail = () => {
       e.preventDefault();
   
       try {
-        dispatch(setUserOtp(otp)); // Set OTP in Redux store
+         // Set OTP in Redux store
         console.log("ye h USer --> " , user)
 
         const {accountType , firstname , lastname , email , password , confirmpassword} = user.user;

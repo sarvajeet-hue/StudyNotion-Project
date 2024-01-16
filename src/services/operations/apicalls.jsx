@@ -2,6 +2,7 @@
 import toast from "react-hot-toast";
 import axios from "axios";
 import { setImage, setToken } from "../../Slices/auth";
+import { setUser } from "../../Slices/UserSlice";
 
 
 export const login = (data , navigate) => {
@@ -34,6 +35,15 @@ export const login = (data , navigate) => {
                  localStorage.setItem('image' , JSON.stringify(response.data.User.image))
 
                  localStorage.setItem("token", JSON.stringify(response.data.token));
+
+                 dispatch(setUser(response.data.User))
+                 const dataUser = response.data.User;
+                 console.log("dataUser-->",dataUser)
+
+
+                 localStorage.setItem("User" , JSON.stringify(dataUser))
+
+                 
 
                  navigate("/dashboard/my-profile")
             }catch (error) {
