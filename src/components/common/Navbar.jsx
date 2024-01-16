@@ -3,19 +3,23 @@ import Logo from '../../assets/Logo/Logo-Full-Light.png'
 
 
 import { NavbarLinks } from '../../data/navbar-links'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { CiSearch } from "react-icons/ci";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { IoIosArrowDown } from "react-icons/io";
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setToken } from '../../Slices/auth';
 
 
 
 const Navbar = () => {
     //here we can use matchPath function in react router dom also
     const location = useLocation();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const image = useSelector((state) => state.auth.image) 
     
     const [catalogData , setCatalogData] = useState(null)
     console.log(catalogData);
@@ -26,6 +30,7 @@ const Navbar = () => {
 
     console.log("this is navbar user-->  ", user) 
 
+    console.log("image--> ", image)
     
     
     console.log("Navbar Token--> " ,token);
@@ -40,9 +45,17 @@ const Navbar = () => {
 
         }
     }
+
+    function logoutHandler(){
+        localStorage.removeItem('token');
+        dispatch(setToken(""))
+        navigate('/login')
+    }
     useEffect(() => {
         fetchCategoriesData();
     } ,[])
+
+
     
 
   return (
@@ -90,12 +103,27 @@ const Navbar = () => {
             
               {
                   token ? (
-                      <div className='flex justify-end items-center gap-5 text-richblack-5'>
+                      <div className='flex relative justify-end items-center gap-5 text-richblack-5'>
                           <CiSearch className='w-[20px] h-[20px]' />
                           <AiOutlineShoppingCart className='w-[20px] h-[20px]' />
-                          <CgProfile 
-                            
-                          className='w-[20px] h-[20px]' />
+                          
+
+                              {/* <CgProfile
+
+                                  className='w-[20px] h-[20px]' /> */}
+
+                                <div  
+                                 className='relative  group rounded-full w-[20px] h-[20px] text-richblack-5 border-richblack-5 bg-richblack-5 '>
+                                        <img src={image} className='w-[20px] h-[20px] rounded-full object-contain' alt="" />
+
+                                    
+                                </div>
+                                <div className='absolute top-[50px] bg-richblack-5'>
+                                    <button onClick={logoutHandler}
+                                     className='text-richblack-800'>Logout</button>
+                                </div>
+                                
+                         
                       </div>
 
                       

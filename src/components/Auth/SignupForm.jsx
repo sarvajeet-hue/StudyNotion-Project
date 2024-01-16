@@ -4,13 +4,17 @@ import {AiOutlineEye} from 'react-icons/ai'
 import { useForm } from 'react-hook-form';
 import { useState , useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {ACCOUNT_TYPE} from '../../utils/constants'
 
 import { useDispatch , useSelector } from 'react-redux';
 import { setUser } from '../../Slices/UserSlice';
 import axios from 'axios';
-
+import Tab from '../common/Tab';
+import { sendOtp } from '../../services/operations/apicalls';
 
 const SignupForm = () => {
+
+    const [accountType , setAccountType] = useState(ACCOUNT_TYPE.STUDENT);
 
     const user = useSelector((state) => state.user);
 
@@ -29,42 +33,41 @@ const SignupForm = () => {
 
 
       function onSubmitForm(data){
-        dispatch(setUser(data))
-        console.log("User" , user)
-        const email = data.email;
-        console.log("email",email);
+        dispatch(sendOtp(data , navigate ))
+        console.log(data)
+        // console.log("User" , user)
+        // const email = data.email;
+        // console.log("email",email);
 
-         const otp_response = axios.post("http://localhost:4000/api/v1/auth/otp" , {email})
-        console.log("Otp_response",otp_response) 
+        //  const otp_response = axios.post("http://localhost:4000/api/v1/auth/otp" , {email})
+        // console.log("Otp_response",otp_response) 
 
-        navigate("/verifymail")
+        // navigate("/verifymail")
 
       }
+
+      const tabData = [
+        {
+          id: 1,
+          tabName: "Student",
+          type: ACCOUNT_TYPE.STUDENT,
+        },
+        {
+          id: 2,
+          tabName: "Instructor",
+          type: ACCOUNT_TYPE.INSTRUCTOR,
+        },
+      ]
 
       
 
   return (
     <div>
     {/* Tab */}
-    {/* <Tab tabData={tabData} field={accountType} setField={setAccountType} /> */}
+    <Tab tabData={tabData} field={accountType} setField={setAccountType} /> 
     {/* Form */}
-    <form onSubmit={handleSubmit(onSubmitForm)} className="flex w-full flex-col gap-4">
+    <form onSubmit={handleSubmit(onSubmitForm)} className="flex w-full flex-col gap-4 text-richblue-5">
 
-
-    <label className='flex flex-col gap-2 text-richblack-5'>
-          <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
-            As a<sup className="text-pink-200">*</sup>
-          </p>
-          <input
-            required
-            type="text"
-            name="accountType"
-           
-            {...register("accountType")}
-            placeholder="SignUp as a .."
-            className='flex p-3 items-center rounded-lg bg-richblack-800'
-          />
-        </label>
       
       <div className="flex gap-x-4 w-full">
 
