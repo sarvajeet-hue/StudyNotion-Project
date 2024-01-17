@@ -2,24 +2,29 @@ import React, { useEffect, useState } from 'react'
 import Logo from '../../assets/Logo/Logo-Full-Light.png'
 
 
+
 import { NavbarLinks } from '../../data/navbar-links'
-import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { CiSearch } from "react-icons/ci";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { CgProfile } from "react-icons/cg";
+
 import { IoIosArrowDown } from "react-icons/io";
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { setToken } from '../../Slices/auth';
 import { setUser } from '../../Slices/UserSlice';
+import { Avatar, Dropdown } from 'flowbite-react';
+import { HiCog, HiCurrencyDollar, HiLogout, HiViewGrid } from 'react-icons/hi';
 
 
 
 const Navbar = () => {
+    
+
     //here we can use matchPath function in react router dom also
     const location = useLocation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
     const image = useSelector((state) => state.auth.image) 
     
     const [catalogData , setCatalogData] = useState(null)
@@ -54,6 +59,8 @@ const Navbar = () => {
         dispatch(setUser(null))
         navigate('/login')
     }
+
+   
     useEffect(() => {
         fetchCategoriesData();
     } ,[])
@@ -106,25 +113,28 @@ const Navbar = () => {
             
               {
                   user ? (
-                      <div className='flex relative justify-end items-center gap-5 text-richblack-5'>
+                      <div className='flex  justify-end items-center gap-5 text-richblack-5'>
                           <CiSearch className='w-[20px] h-[20px]' />
                           <AiOutlineShoppingCart className='w-[20px] h-[20px]' />
                           
 
-                              {/* <CgProfile
+                              
 
-                                  className='w-[20px] h-[20px]' /> */}
 
-                                <div  
-                                 className='relative  group rounded-full w-[20px] h-[20px] text-richblack-5 border-richblack-5 bg-richblack-5 '>
-                                        <img src={image} className='w-[20px] h-[20px] rounded-full object-contain' alt="" />
-
+                          <Dropdown className='bg-richblack-5 text-richblack-600 p-3 font-inter font-semibold gap-2' arrowIcon={false}
+                           label={<Avatar rounded={true} className=' border-none  '><img className='rounded-full bg-white h-[20px] w-[20px] object-contain' src={image} alt="" /></Avatar>}>
+                              
+                              <Dropdown.Item  icon={HiViewGrid}>Dashboard</Dropdown.Item>
+                              <Dropdown.Item icon={HiCog}>Settings</Dropdown.Item>
+                              <Dropdown.Item icon={HiCurrencyDollar}>Earnings</Dropdown.Item>
+                              <Dropdown.Divider />
+                              <Dropdown.Item icon={HiLogout} onClick={logoutHandler}>Sign out</Dropdown.Item>
+                          </Dropdown>
                                     
-                                </div>
-                                <div className='absolute top-[50px] bg-richblack-5'>
-                                    <button onClick={logoutHandler}
-                                     className='text-richblack-800'>Logout</button>
-                                </div>
+                            
+                                
+
+                                
                                 
                          
                       </div>
