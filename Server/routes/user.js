@@ -6,7 +6,7 @@ const {auth , isAdmin , isStudent , isInstructor}  = require("../middlewares/aut
 const { resetPasswordToken } = require('../controllers/resetPassword');
 
 router.post('/signup' , signUp)
-router.post('/login',login)
+router.post('/login', login)
 router.post('/otp', sendOtp)
 
 

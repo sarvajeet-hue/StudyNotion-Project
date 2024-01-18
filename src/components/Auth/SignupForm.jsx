@@ -17,7 +17,7 @@ const SignupForm = () => {
     const [accountType , setAccountType] = useState(ACCOUNT_TYPE.STUDENT);
     const [formData , setFormData] = useState(null)
 
-    const user = useSelector((state) => state.user);
+    
 
     const dispatch = useDispatch()
     const [showPassword, setShowPassword] = useState(false)

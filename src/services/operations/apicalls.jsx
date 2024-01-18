@@ -87,6 +87,7 @@ export const sendOtp = (data , navigate) => {
             
             
             
+            
             navigate("/verifymail")
         }
         catch (error) {

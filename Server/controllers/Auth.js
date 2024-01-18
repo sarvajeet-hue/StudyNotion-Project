@@ -162,8 +162,8 @@ exports.signUp = async (req, res) => {
 
 exports.login = async (req , res) => {
     try{
-        const {email , password} = req.body;
-        if(!email || !password){
+        const { accountType , email , password} = req.body;
+        if(!email || !password || !accountType){
             return res.status(400).json({
                 success : false,
                 message : "please fill the email and password"
@@ -171,6 +171,13 @@ exports.login = async (req , res) => {
         }
         //validation
         const existedUser = await User.findOne({email})
+        
+        if(existedUser.accountType !== accountType){
+            return res.status(400).json({
+                success : false,
+                message : "Please Enter Correct Position Of yours"
+            })
+        }
         if(!existedUser){
             return res.status(400).json({
                 success : false,
