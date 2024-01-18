@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../Slices/UserSlice';
 import { Avatar, Dropdown } from 'flowbite-react';
 import { HiCog, HiCurrencyDollar, HiLogout, HiViewGrid } from 'react-icons/hi';
+import toast from 'react-hot-toast';
 
 
 
@@ -57,6 +58,7 @@ const Navbar = () => {
     function logoutHandler(){
         localStorage.removeItem('User');
         dispatch(setUser(null))
+        toast.success("Logout Successfully")
         navigate('/login')
     }
 

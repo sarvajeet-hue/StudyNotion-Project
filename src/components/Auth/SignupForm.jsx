@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import {ACCOUNT_TYPE} from '../../utils/constants'
 
 import { useDispatch , useSelector } from 'react-redux';
-import { setUser } from '../../Slices/UserSlice';
+import { setSignUpData} from '../../Slices/UserSlice';
 import axios from 'axios';
 import Tab from '../common/Tab';
 import { sendOtp } from '../../services/operations/apicalls';
@@ -36,7 +36,10 @@ const SignupForm = () => {
       function onSubmitForm(data){
         dispatch(sendOtp(data , navigate ))
         console.log(data)
-        setFormData(data)
+        data.accountType = accountType;
+        dispatch(setSignUpData(data ))
+
+        
         // console.log("User" , user)
         // const email = data.email;
         // console.log("email",email);

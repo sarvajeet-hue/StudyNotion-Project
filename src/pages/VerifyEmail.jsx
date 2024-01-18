@@ -2,68 +2,57 @@ import React from 'react'
 import { useState ,useEffect } from 'react';
 import OtpInput from 'react-otp-input';
 import {BiArrowBack} from "react-icons/bi"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector , useDispatch} from 'react-redux';
 
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 
 
 const VerifyEmail = () => {
 
-    const dispatch = useDispatch();
-    const user = useSelector((state) => state.user);
+    const navigate = useNavigate();
+    const {signupData} = useSelector((state) => state.user)
+    // const dispatch = useDispatch();
+    // const user = useSelector((state) => state.user);
+
+      console.log("SignupData --> " ,signupData)
    
     
-    const [otp, setOtp] = useState('');
+       const [otp, setOtp] = useState('');
 
-     function onSubmit(e) {
-      e.preventDefault();
-  
-      try {
-         // Set OTP in Redux store
-        console.log("ye h USer --> " , user)
-
-        const {accountType , firstname , lastname , email , password , confirmpassword} = user.user;
-        console.log(accountType)
-        console.log(firstname)
-        console.log(lastname)
-        console.log(email)
-        console.log(password)
-        console.log(confirmpassword)
-
-        sendDb(accountType  , firstname , lastname , email , password , confirmpassword ,otp);
-        console.log(otp)
-  
-        
-        
-      } catch (error) {
-        console.log("Error posting user details to the database", error);
-      }
-    };
+      
+      const {accountType , firstname , lastname , email , password , confirmpassword} = signupData;
 
 
-    async function sendDb(accountType , firstname , lastname , email , password , confirmpassword , otp){
-       try{
-        const sendData = {
-          accountType , firstname , lastname , email , password , confirmpassword , otp
+      async  function sendDb(accountType , firstname , lastname , email , password , confirmpassword){
+        try{
+          const sendingSigupData = {
+            accountType , firstname , lastname , email , password , confirmpassword , otp
+          } 
+          console.log(sendingSigupData);
+
+          const response = await axios.post("http://localhost:4000/api/v1/auth/signup" , sendingSigupData)
+          console.log(response);
+          toast.success("Sign up Successfull")
+
+
+        }catch(error){
+          console.log(error)
+          toast.error(error.response.data.message)
         }
-        console.log("this is otp --> " , otp )
-        console.log(firstname);
-        console.log("sendData-->" ,sendData)
+      }
 
-        const createResponse = await axios.post("http://localhost:4000/api/v1/auth/signup", sendData);
-  
-        console.log("Db Response ", createResponse);
-       }catch(error){
-          console.log("this is the issue while posting data into db" , error)
-       }
-    }
-
+    
 
 
     
-    
+      function onSubmit(e){
+        e.preventDefault();
+        sendDb(accountType , firstname , lastname , email , password , confirmpassword );
+        navigate("/login")
+      }
 
     return (
         <div className="min-h-[calc(100vh-3.5rem)] grid place-items-center">
