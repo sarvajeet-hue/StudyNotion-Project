@@ -2,10 +2,16 @@ import react from 'react'
 
 const Sidebar = () => {
     return(
-        <div>
-            
+        <div className='flex flex-col overflow-y-hidden gap-[10px] border-richblack-700 bg-richblack-800 border-r-2 w-[222px] h-[100vh] py-[30px]'>
+            <div className='flex flex-col items-start '>
+                <div className='flex bg-yellow-800 items-center justify-center border-l-2 border-yellow-50 px-[24px] py-[8px] w-full'>My Profile </div>
+                <div></div>
+                <div></div>
+                <div></div>
+
+            </div>
         </div>
-    //     <div className="flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800 py-10">
+     //     <div className="flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800 py-10">
     //     <div className="flex flex-col">
     //       {sidebarLinks.map((link) => {
     //         if (link.type && user?.accountType !== link.type) return null
