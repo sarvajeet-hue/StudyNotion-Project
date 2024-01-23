@@ -9,6 +9,7 @@ import AboutUs from './pages/AboutUs';
 import VerifyEmail from './pages/VerifyEmail';
 import Dashboard from './pages/Dashboard';
 import ContactUs from './pages/ContactUs';
+import MyProfile from './pages/MyProfile';
 
 function App() {
   return (
@@ -21,8 +22,9 @@ function App() {
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/about' element={<AboutUs/>}></Route>
         <Route path='/verifymail' element={<VerifyEmail/>}></Route>
-        <Route path='/dashboard' element={<Dashboard/>}></Route>
+        {/* <Route path='/dashboard/my-profile' element={<Dashboard/>}></Route> */}
         <Route path='/contact' element={<ContactUs/>}></Route>
+        <Route path='/dashboard/my-profile' element={<MyProfile/>}></Route>
 
 
 
