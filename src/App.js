@@ -14,6 +14,7 @@ function App() {
   return (
     <div className="App w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
       <Navbar/>
+      
     <Routes>
         <Route path='/' element = {<Home/>}></Route>
         <Route path= "/signup" element={<Signup/>}></Route>

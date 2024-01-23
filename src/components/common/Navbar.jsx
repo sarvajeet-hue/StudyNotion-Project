@@ -127,8 +127,6 @@ const Navbar = () => {
                            label={<Avatar rounded={true} className=' border-none  '><img className='rounded-full bg-white h-[20px] w-[20px] object-contain' src={image} alt="" /></Avatar>}>
                               
                               <Dropdown.Item  icon={HiViewGrid}><Link to={"/dashboard"}>Dashboard</Link></Dropdown.Item>
-                              <Link to={"/setting"}><Dropdown.Item icon={HiCog}>Settings</Dropdown.Item></Link>
-                              <Dropdown.Item icon={HiCurrencyDollar}>Earnings</Dropdown.Item>
                               <Dropdown.Divider />
                               <Dropdown.Item icon={HiLogout} onClick={logoutHandler}>Sign out</Dropdown.Item>
                           </Dropdown>
