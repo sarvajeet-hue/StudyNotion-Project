@@ -29,20 +29,20 @@ const sideBarData = [
 
 
 const Sidebar = () => {
-    const [currentSideBar , setCurrentSideBar] = useState(false)
+    const [activeIndex , setactiveindex] = useState(null)
 
     return(
         <div className='flex flex-col overflow-y-hidden gap-[10px] border-richblack-700 bg-richblack-800 border-r-2 w-[222px] h-[100vh] py-[30px]'>
-            <div className='flex flex-col items-start w-full '>
+            <div className='flex flex-col items-start w-full justify-center  py-2 '>
                
                {
                 sideBarData.map((data , index) => {
                     return (
-                        <Link  to={data.text.replace(" " , "-")} key={index}>
-                            <div onClick={() => setCurrentSideBar(true)} className={`flex w-full gap-4 px-3 py-2 items-center justify-center 
-                            ${currentSideBar ? " bg-yellow-700" : "bg-richblack-700"}
-                            `}>
-                                {data.icon}
+                        <Link onClick={() => setactiveindex(index)} 
+                        className={` w-full flex items-start ${activeIndex === index ? "bg-yellow-500 text-richblack-700" : "bg-richblack-800 text-richblack-5"}` }
+                         /*to={data.text.replace(" " , "-")}*/ key={index}>
+                            <div className={`flex px-3 gap-4  py-2 items-center justify-center`}>
+                                <div>{data.icon}</div>
                                 <p>
                                     {data.text}
                                 </p>
