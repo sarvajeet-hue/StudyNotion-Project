@@ -36,11 +36,11 @@ const MyProfile = () => {
         <div className='flex flex-col items-start  gap-5 max-w-[750px] ml-6 bg-richblack-800'>
           {/* profile-div */}
           <div className='flex p-6 justify-center mx-auto gap-5 items-center'>
-            <div className='flex  items-center gap-6'>
+            <div className='flex w-[750px] items-center gap-6'>
               <img src={image} className='w-[78px] h-[78px] rounded-full' alt="" />
               {/* name-section */}
-              <div className='flex gap-1 w-[60%] flex-col '>
-                <p className=' flex gap-2 font-bold text-3xl text-richblack-5'>{user.firstname}
+              <div className='flex gap-1 w-[60%]  flex-col '>
+                <p className='  flex gap-2 font-bold text-3xl text-richblack-5 uppercase'>{user.firstname}
                   <p>{user.lastname}</p>
                 </p>
 
@@ -54,21 +54,9 @@ const MyProfile = () => {
 
 
               <button className='flex justify-center items-center gap-2 bg-yellow-5 rounded-lg px-5 py-2 font-semibold'>
-
-
-
                 <FaEdit />
-
                 Edit
-
-
               </button>
-
-
-
-
-
-
             </div>
           </div>
 
@@ -77,7 +65,7 @@ const MyProfile = () => {
         </div>
 
          {/* firstname lastname sec */}
-         <div className='flex flex-col p-6 bg-richblack-800  items-start justify-center'>
+         <div className='flex flex-col p-6 bg-richblack-800  ml-5 items-start justify-center'>
             <div className='flex justify-between gap-5 items-center w-[750px]'>
               <p className='text-richblack-5 flex items-start w-[80%] font-semibold font-inter text-2xl gap-5'>Personal Detail</p>
               <button className='flex justify-center items-center gap-2 bg-yellow-5 rounded-lg px-5 py-2 font-semibold'>
@@ -86,6 +74,30 @@ const MyProfile = () => {
               </button>
 
             </div>
+
+            {/* second-div */}
+            <div className='flex items-start justify-between gap-1 w-full'>
+                <div className='flex items-start flex-col gap-1 w-[50%]'>
+                  <p className='text-richblack-600 font-inter font-semibold '>Firstname</p>
+                  <p className='text-richblack-5 font-inter uppercase'>{user?.firstname}</p>
+                </div>
+                <div className='w-[50%] flex flex-col gap-1 items-start'>
+                  <p className='text-richblack-600 font-inter font-semibold'>Lastname</p>
+                  <p className='text-richblack-5 font-inter uppercase'>{user?.lastname}</p>
+                </div>
+              </div>  
+              {/* email-div */}
+            <div className='flex items-start justify-between gap-1 w-full'>
+                <div className='flex items-start flex-col gap-1 w-[50%]'>
+                  <p className='text-richblack-600 font-inter font-semibold'>Email</p>
+                  <p className='text-richblack-5 font-inter'>{user?.email}</p>
+                </div>
+                <div className='w-[50%] flex flex-col gap-1 items-start'>
+                  <p className='text-richblack-600 font-inter font-semibold'>AccountType</p>
+                  <p className='text-richblack-5 font-inter uppercase'>{user?.accountType}</p>
+                </div>
+              </div>  
+             
           </div>
 
 
