@@ -1,6 +1,6 @@
-import react, { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CgProfile } from "react-icons/cg";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { MdLibraryBooks } from "react-icons/md";
 import { FaGraduationCap } from "react-icons/fa";
 import { CiBookmark } from "react-icons/ci";
@@ -39,6 +39,10 @@ const Sidebar = () => {
     const [activeIndex , setactiveindex] = useState(null)
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
+
+    console.log(location.pathname)
+    
 
     function logoutHandler(){
         localStorage.removeItem('User');
@@ -47,6 +51,9 @@ const Sidebar = () => {
         navigate('/login')
     }
 
+    useEffect(() => {
+        setactiveindex(0)
+    } , [])
 
     return(
         <div className='flex flex-col overflow-y-hidden gap-[10px] border-richblack-700 bg-richblack-800 border-r-2 w-[222px] h-calc(100vh-70px) py-[30px]'>
