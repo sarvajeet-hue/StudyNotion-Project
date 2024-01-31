@@ -9,7 +9,8 @@ import AboutUs from './pages/AboutUs';
 import VerifyEmail from './pages/VerifyEmail';
 import Dashboard from './pages/Dashboard';
 import ContactUs from './pages/ContactUs';
-import MyProfile from './pages/MyProfile';
+import MyProfile from './DashboardPage/MyProfile';
+import Courses from './DashboardPage/Courses';
 
 function App() {
   return (
@@ -24,7 +25,13 @@ function App() {
         <Route path='/verifymail' element={<VerifyEmail/>}></Route>
         {/* <Route path='/dashboard/my-profile' element={<Dashboard/>}></Route> */}
         <Route path='/contact' element={<ContactUs/>}></Route>
-        <Route path='/dashboard/my-profile' element={<MyProfile/>}></Route>
+        {/* <Route path='/dashboard/my-profile' element={<MyProfile/>}></Route> */}
+        
+        <Route path='/dashboard' element={<Dashboard/>}>
+          <Route path='my-profile' element ={<MyProfile/>}> </Route>
+          <Route path='courses' element={<Courses/>}></Route>
+          
+        </Route>
 
 
 

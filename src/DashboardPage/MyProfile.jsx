@@ -1,6 +1,6 @@
 
 import React from 'react'
-import Sidebar from '../DashboardPage/Sidebar'
+import Sidebar from './Sidebar'
 import { RiEditBoxLine } from "react-icons/ri"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
