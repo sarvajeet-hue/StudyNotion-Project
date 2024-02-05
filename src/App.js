@@ -11,6 +11,9 @@ import Dashboard from './pages/Dashboard';
 import ContactUs from './pages/ContactUs';
 import MyProfile from './DashboardPage/MyProfile';
 import Courses from './DashboardPage/Courses';
+import Setting from './DashboardPage/Setting';
+import Enrolled_Courses from './DashboardPage/Courses/Enrolled_Courses';
+import Purchase_history from './DashboardPage/Purchase-history/Purchase_history';
 
 function App() {
   return (
@@ -30,7 +33,9 @@ function App() {
         <Route path='/dashboard' element={<Dashboard/>}>
           <Route path='my-profile' element ={<MyProfile/>}> </Route>
           <Route path='courses' element={<Courses/>}></Route>
-          
+          <Route path='setting' element={<Setting/>}></Route>
+          <Route path='enrolled-courses' element={<Enrolled_Courses/>}></Route>
+          <Route path='purchase-history' element={<Purchase_history/>}></Route>
         </Route>
 
 

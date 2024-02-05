@@ -104,3 +104,26 @@ export const sendOtp = (data , navigate) => {
         }
     }
 }
+
+
+export const logout = (navigate) => {
+    return (dispatch) => {
+        try{
+            localStorage.removeItem('User');
+            dispatch(setUser(null))
+            toast.success("Logout Successfully")
+            navigate('/login')
+        }catch(error){
+            console.log(error);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+ 

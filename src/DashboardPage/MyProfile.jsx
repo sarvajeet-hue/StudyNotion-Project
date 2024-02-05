@@ -20,8 +20,8 @@ const MyProfile = () => {
   return (
 
     <div className='flex h-[calc(100vh-65px)]'>
-      <Sidebar />
-      <div className='flex flex-col py-6 pl-[8.5rem]  pr-[120px] w-[calc(100vw-222px)] gap-10 items-start'>
+      
+      <div className='flex flex-col py-6   pr-[120px] w-[calc(100vw-222px)] gap-10 items-start'>
         <div className='flex items-start gap-2 text-richblack-300'>
           <p >Home</p>
           <p>/</p>
@@ -56,7 +56,7 @@ const MyProfile = () => {
 
 
 
-              <button onClick={() => navigate('/dashboard/setting')} className='flex justify-center items-center ml-[47px] gap-2 bg-yellow-5 rounded-lg px-5 py-2 font-semibold'>
+              <button onClick={() => navigate('/dashboard/setting')} className='flex text-richblack-800 justify-center items-center ml-[47px] gap-2 bg-yellow-5 rounded-lg px-5 py-2 font-semibold'>
                 <FaEdit />
                 Edit
               </button>
@@ -71,7 +71,7 @@ const MyProfile = () => {
         <div className='flex flex-col w-[850px] p-6 bg-richblack-800 items-start justify-center'>
             <div className='flex justify-between gap-5 items-center w-[750px]'>
               <p className='text-richblack-5 flex items-start w-[80%] font-semibold font-inter text-2xl gap-5'>Personal Detail</p>
-              <button onClick={() => navigate('/dashboard/setting')} className='flex justify-center items-center gap-2 bg-yellow-5 rounded-lg px-5 py-2 font-semibold'>
+              <button onClick={() => navigate('/dashboard/setting')} className='flex justify-center text-richblack-800 items-center gap-2 bg-yellow-5 rounded-lg px-5 py-2 font-semibold'>
                 <FaEdit />
                 Edit
               </button>
