@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { CgProfile } from "react-icons/cg";
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, Route, useLocation, useNavigate } from 'react-router-dom';
 import { MdLibraryBooks } from "react-icons/md";
 import { FaGraduationCap } from "react-icons/fa";
 import { CiBookmark } from "react-icons/ci";
@@ -56,14 +56,18 @@ const Sidebar = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    
+
 
     const [popupModule , setpoppupModule] = useState(null)
   
 
     useEffect(() => {
         setactiveindex(0)
-    } , [])
+
+        const index = sideBarData.findIndex((item)  => `/dashboard/${item.location}` === location.pathname )
+
+        setactiveindex(index);
+    } , [location])
 
 
     console.log(popupModule)
