@@ -11,7 +11,7 @@ import Dashboard from './pages/Dashboard';
 import ContactUs from './pages/ContactUs';
 import MyProfile from './DashboardPage/MyProfile';
 import Courses from './DashboardPage/Courses';
-import Setting from './DashboardPage/Setting';
+import Setting from './DashboardPage/setting/Setting';
 import Enrolled_Courses from './DashboardPage/Courses/Enrolled_Courses';
 import Purchase_history from './DashboardPage/Purchase-history/Purchase_history';
 
