@@ -4,7 +4,7 @@ import SignUp_Image from "../assets/Images/signup.webp"
 
 const Signup = () => {
   return (
-    <div className='flex justify-center items-center py-[90px] px-[120px] '>
+    <div className='flex justify-center items-center pb-[90px] px-[120px] '>
       <Template 
         title={"Join the millions learning to code with StudyNotion for free"}
         description1={"Build skills for today, tomorrow, and beyond."}

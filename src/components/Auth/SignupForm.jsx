@@ -2,13 +2,12 @@ import React from 'react'
 import {AiOutlineEyeInvisible} from 'react-icons/ai'
 import {AiOutlineEye} from 'react-icons/ai'
 import { useForm } from 'react-hook-form';
-import { useState , useEffect } from 'react';
+import { useState  } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {ACCOUNT_TYPE} from '../../utils/constants'
 
-import { useDispatch , useSelector } from 'react-redux';
+import { useDispatch  } from 'react-redux';
 import { setSignUpData} from '../../Slices/UserSlice';
-import axios from 'axios';
 import Tab from '../common/Tab';
 import { sendOtp } from '../../services/operations/apicalls';
 
