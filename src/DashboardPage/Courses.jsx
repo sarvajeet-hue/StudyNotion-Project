@@ -1,11 +1,26 @@
-import React from 'react'
+import React from "react";
+import CTAButton from "../components/core/Homepage/CTAButton";
+import { Outlet, useLocation } from "react-router-dom";
+import { IoAddCircleOutline } from "react-icons/io5";
 
 const Courses = () => {
+  const location = useLocation();
+  console.log(location.pathname);
   return (
-    <div className='text-richblack-5 font-bold'>
-      This is the course 
-    </div>
-  )
-}
+    <div>
+      {location.pathname === "/dashboard/courses/createCourses" ? (
+        <Outlet />
+      ) : (
+        <div className="flex items-center justify-between ">
+          <div>All the Content</div>
 
-export default Courses
+          <CTAButton active={true} linkto={"/dashboard/courses/createCourses"}>
+          <IoAddCircleOutline className="text-xl" /> New 
+          </CTAButton>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Courses;
