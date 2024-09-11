@@ -79,7 +79,7 @@ const Sidebar = () => {
                 className={` w-full flex items-start 
                             
                          ${
-                           activeIndex === index
+                           activeIndex === index || location.pathname.includes(data.text)
                              ? "bg-yellow-500 text-richblack-700 w-full"
                              : "bg-richblack-800 text-richblack-5"
                          }`}
