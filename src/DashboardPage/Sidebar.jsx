@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import ConfirmationBox from "../components/common/ConfirmationBox";
 import { logout } from "../services/operations/apicalls";
 
-
 const sideBarData = [
   {
     icon: <CgProfile />,
@@ -66,12 +65,15 @@ const Sidebar = () => {
 
   return (
     <div className="flex flex-col relative overflow-y-hidden gap-[10px] border-richblack-700 bg-richblack-800 border-r-2 w-[222px] h-calc(100vh-70px) py-[30px]">
-         {user.accountType === "Instructor" ? <p className="text-center">Instructor</p> : <p className="text-center">Student</p>}
+      {user.accountType === "Instructor" ? (
+        <p className="text-center">Instructor</p>
+      ) : (
+        <p className="text-center">Student</p>
+      )}
       <div className="flex flex-col  w-full justify-center  py-2 ">
         {sideBarData.map((data, index) => {
           return (
-            <div>
-               
+            <div key={index}>
               <NavLink
                 onClick={() => setactiveindex(index)}
                 key={index}
@@ -79,7 +81,8 @@ const Sidebar = () => {
                 className={` w-full flex items-start 
                             
                          ${
-                           activeIndex === index || location.pathname.includes(data.text)
+                           activeIndex === index ||
+                           location.pathname.includes(data.text)
                              ? "bg-yellow-500 text-richblack-700 w-full"
                              : "bg-richblack-800 text-richblack-5"
                          }`}

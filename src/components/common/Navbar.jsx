@@ -124,7 +124,7 @@ const Navbar = () => {
 
 
                           <Dropdown className='bg-richblack-5 text-richblack-600 p-3 font-inter font-semibold gap-2' arrowIcon={false}
-                           label={<div rounded={true} className=' border-none  '><img className='rounded-full bg-white h-[20px] w-[20px] object-contain' src={image} alt="" /></div>}>
+                           label={<div  className=' border-none  '><img className='rounded-full bg-white h-[20px] w-[20px] object-contain' src={image} alt="" /></div>}>
                               
                               <Dropdown.Item  icon={HiViewGrid}><Link to={"/dashboard/my-profile"}>Dashboard</Link></Dropdown.Item>
                               <Dropdown.Divider />

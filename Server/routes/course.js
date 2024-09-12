@@ -9,7 +9,7 @@ const {createSection} = require("../controllers/Section");
 
 
 
-router.post('/createcourse' ,auth , isInstructor , createCourses )
+router.post('/createcourse',auth  , createCourses )
 router.get("/getallcourses" , getAllCourses)
 router.get("/getcoursesdetails" , auth , isStudent , getCourseDetails)
 

@@ -12,7 +12,7 @@ const CourseSchema = new mongoose.Schema({
     instructor : {
         type : mongoose.Schema.Types.ObjectId,
         ref : "User",
-        required :true
+        
     },
     WhatYouWillLearn : { 
         type : String,
@@ -49,7 +49,7 @@ const CourseSchema = new mongoose.Schema({
        {
         type : mongoose.Schema.Types.ObjectId,
         ref : "User",
-        required : true
+        
        }
     ]
 })

@@ -1,26 +1,58 @@
 const Course = require('../models/Course');
 const Category = require('../models/Category');
 const User = require('../models/User');
-const {imageUploadToCloudinary} = require('../utils/imageUploader')
+const {imageUploadToCloudinary} = require('../utils/imageUploader');
+
+const { isRouteErrorResponse } = require('react-router-dom');
 require('dotenv').config();
 
 //create courses handler
+
+// exports.createCourses = async(req , res) => {
+//     try{
+//         const {courseName , courseDescription  , WhatYouWillLearn , courseContent ,Price ,category } = req.body;
+//         if(!courseName || !courseDescription || !WhatYouWillLearn || !Price ){
+//             return res.status(400).json({
+//                 success :false, 
+//                 message : "Fill all the course details"
+//             })
+//         }
+
+//         const courseCreate = await Course.create({courseName , courseDescription , WhatYouWillLearn , courseContent , Price , category});
+
+//         res.status(200).json({
+//             message : "course create Successfully", 
+//             data : courseCreate
+//         })
+//     }catch(error){
+//         console.log("error" , error)
+//         res.status(500).json({
+//             message : "course not create Successfully", 
+            
+//         })
+//     }   
+// }
+
 exports.createCourses = async(req , res) => {
     try{
         const {courseName , courseDescription  , WhatYouWillLearn , courseContent ,Price ,category } = req.body;
-        const thumnail = req.files.thumnailImage;
+        console.log("WhatYouWillLearn" , WhatYouWillLearn)
+        console.log("courseContent" , courseContent)
+        console.log("category", category)
+        // const thumnail = req.files.thumnailImage;
 
         //validation
 
-        if(!courseName || !courseDescription || !WhatYouWillLearn || !Price || !thumnail){
+        if(!courseName || !courseDescription || !WhatYouWillLearn || !Price){
             return res.status(400).json({
                 success :false,
                 message : "Fill all the course details"
             })
         }
-
+console.log("runs here")
         //instructor id
         const userId = req.user.Id;
+        console.log("UserID", userId)
         const instructorDetails = await User.findById(userId);
         console.log("instructor details",instructorDetails)
 
@@ -34,6 +66,7 @@ exports.createCourses = async(req , res) => {
         //check given tag is valid or not
 
         const categoryDetails = await Category.findById(category);
+        console.log("categoryDetails:",categoryDetails)
         if(!categoryDetails){
             return res.status(400).json({
                 success :false,
@@ -42,7 +75,7 @@ exports.createCourses = async(req , res) => {
         }
 
         //upload image to 
-        const thumnailImage = await imageUploadToCloudinary(thumnail , process.env.FOLDER_NAME)
+        // const thumnailImage = await imageUploadToCloudinary(thumnail , process.env.FOLDER_NAME)
 
         //create entry of new course 
         const newCourse = await Course.create({
@@ -50,7 +83,7 @@ exports.createCourses = async(req , res) => {
             category : categoryDetails._id,
             WhatYouWillLearn,
             Price,
-            thumbNail : thumnailImage.secure_url, 
+            // thumbNail : thumnailImage.secure_url, 
         }).populate("courseContent").exec();
 
         //update on user model 

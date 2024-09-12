@@ -43,9 +43,9 @@ const MyProfile = () => {
               <img src={image} className='w-[78px] h-[78px] rounded-full' alt="" />
               {/* name-section */}
               <div className='flex gap-1 w-[60%]  flex-col '>
-                <p className='  flex gap-2 font-bold text-3xl text-richblack-5 uppercase'>{user.firstname}
+                <div className='  flex gap-2 font-bold text-3xl text-richblack-5 uppercase'>{user.firstname}
                   <p>{user.lastname}</p>
-                </p>
+                </div>
 
                 <div className='text-lg font-semibold text-richblack-300 font-inter'>
                   {user.email}
