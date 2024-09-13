@@ -20,8 +20,8 @@ const CourseSchema = new mongoose.Schema({
     },
     courseContent : [
         {
-            type : mongoose.Schema.Types.ObjectId,
-            ref : "Section",
+            type : String,
+            
         }
     ],
 

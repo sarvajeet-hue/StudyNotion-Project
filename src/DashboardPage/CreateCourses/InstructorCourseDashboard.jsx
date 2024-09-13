@@ -6,7 +6,7 @@ import { IoAddCircleOutline } from "react-icons/io5";
 export const InstructorCourseDashboard = () => {
     const location = useLocation();
   return (
-    <div>
+    <div className="flex flex-col   gap-4">
       <div>
         {location.pathname === "/dashboard/courses/createCourses" ? (
           <Outlet />
@@ -22,6 +22,11 @@ export const InstructorCourseDashboard = () => {
             </CTAButton>
           </div>
         )}
+      </div>
+
+
+      <div className="text-white w-[1073px] border rounded-md h-[634px] flex flex-col">
+        Courses Div
       </div>
     </div>
   );

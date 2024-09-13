@@ -6,11 +6,14 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { FaComment } from "react-icons/fa";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export const AddingCourseForm = () => {
 
   const {user} = useSelector((state) => state.user)
-
+  const {register , handleSubmit , setValue} = useForm();
+  const navigate = useNavigate();
   console.log("user token", user.token)
 
   const [files, setFiles] = useState([]);
@@ -18,7 +21,7 @@ export const AddingCourseForm = () => {
     setFiles(incommingFiles);
     setValue("file" , incommingFiles)
   };
-  const {register , handleSubmit , setValue} = useForm();
+  
 
   async function onSubmitForm(data , event){
     event.preventDefault()
@@ -41,13 +44,15 @@ export const AddingCourseForm = () => {
 
     const response = await axios.post("http://localhost:4000/api/v1/course/createcourse" , formData )
     console.log("response:" , response)
+    toast.success("Course Added Successfully")
+    navigate("/dashboard/courses")
 
 
     
   }
 
   return (
-    <div className="w-[665px] h-auto border rounded-lg p-4 bg-[#161D29]">
+    <div className=" w-[665px] h-auto border rounded-lg p-4 bg-[#161D29]">
       <form onSubmit={handleSubmit(onSubmitForm)} className="flex items-start flex-col gap-4">
         <div className="flex flex-col gap-6 w-full">
           <label  className="flex flex-col gap-3">

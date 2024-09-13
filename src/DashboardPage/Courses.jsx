@@ -1,7 +1,7 @@
 import React from "react";
-import CTAButton from "../components/core/Homepage/CTAButton";
-import { Outlet, useLocation } from "react-router-dom";
-import { IoAddCircleOutline } from "react-icons/io5";
+
+import {  useLocation } from "react-router-dom";
+
 import { useSelector } from "react-redux";
 import { InstructorCourseDashboard } from "./CreateCourses/InstructorCourseDashboard";
 import { StudentCourseDashboard } from "./CreateCourses/StudentCourseDashboard";
