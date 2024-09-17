@@ -47,8 +47,6 @@ export const AddingCourseForm = () => {
     toast.success("Course Added Successfully")
     navigate("/dashboard/courses")
 
-
-    
   }
 
   return (
