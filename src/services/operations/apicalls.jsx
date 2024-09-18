@@ -87,3 +87,18 @@ export const logout = (navigate) => {
     }
   };
 };
+
+
+
+export const getallcourses =async () => {
+ 
+  try {
+    const response = await axios.get("http://localhost:4000/api/v1/course/getallcourses")
+    console.log("response in apicalls :", response?.data?.allCourseDetails)
+    const allcoursesDetails = response?.data?.allCourseDetails
+    return allcoursesDetails;
+  }catch(error){
+    console.log("error:", error)
+  }  
+  
+}

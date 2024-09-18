@@ -17,7 +17,6 @@ const Courses = () => {
       ) : (
         <StudentCourseDashboard />
       )}
-
      
     </div>
   );
