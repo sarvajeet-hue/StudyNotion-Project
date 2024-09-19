@@ -3,7 +3,6 @@ const Category = require("../models/Category");
 const User = require("../models/User");
 const { imageUploadToCloudinary } = require("../utils/imageUploader");
 
-const { isRouteErrorResponse } = require("react-router-dom");
 require("dotenv").config();
 
 //create courses handler
@@ -42,11 +41,14 @@ exports.createCourses = async (req, res) => {
       courseContent,
       Price,
       category,
+      
     } = req.body;
+    console.log("req.files:" , req.files)
     console.log("WhatYouWillLearn", WhatYouWillLearn);
     console.log("courseContent", courseContent);
     console.log("category", category);
-    // const thumnail = req.files.thumnailImage;
+    const thumnail = req.files.thumbnail;
+    console.log("thumbnail:", thumnail)
 
     //validation
 
@@ -81,8 +83,11 @@ exports.createCourses = async (req, res) => {
       });
     }
 
-    //upload image to
-    // const thumnailImage = await imageUploadToCloudinary(thumnail , process.env.FOLDER_NAME)
+    console.log("thumnail in backend:", thumnail)
+
+    // upload image to
+    const thumnailImage = await imageUploadToCloudinary(thumnail , process.env.FOLDER_NAME)
+    console.log("thumbnailImage" , thumnailImage)
 
     //create entry of new course
     const newCourse = await Course.create({
@@ -93,7 +98,7 @@ exports.createCourses = async (req, res) => {
       category: categoryDetails._id,
       WhatYouWillLearn,
       Price,
-      // thumbNail : thumnailImage.secure_url,
+      thumNail : thumnailImage.secure_url,
     })
 
     // Populate courseContent
@@ -142,11 +147,12 @@ exports.getAllCourses = async (req, res) => {
         category: true,
         courseContent: true,
         Price: true,
-        thumnail: true,
+        thumNail: true,
         instructor: true,
         ratingAndReviews: true,
+        WhatYouWillLearn :  true
       }
-    )
+    ) .populate("category")
       .populate("instructor")
       .populate("courseContent")
       .exec();

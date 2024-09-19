@@ -34,7 +34,7 @@ const CourseSchema = new mongoose.Schema({
     Price : {
         type :String
     },
-    thumbNail : {
+    thumNail : {
         type : String
     },
     category:{
