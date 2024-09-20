@@ -2,28 +2,58 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setImage } from '../../Slices/auth';
 import { FaUpload } from "react-icons/fa";
+import axios from 'axios';
 
 
 const SettingImageUpload = () => {
 
     const {image} = useSelector((state) => state.auth)
     const [selectFile , setselectedFile] = useState(null);
+
+    const [profilePicture , setProfilePicture] = useState(image)
     
     const dispatch = useDispatch();
+    const {user} = useSelector((state) =>state.user)
+    
+    console.log("user.token" , user.token)
 
 
 
-    function selectHandler(event){
+
+
+    async function selectHandler(event){
       const tempImg = event.target.files[0]
-      const finalImg = URL.createObjectURL(tempImg)
-       setselectedFile(finalImg)
+
+      const formData = new FormData();
+      formData.append("token" , user.token)
+      formData.append("file", tempImg)
+
+
+
+      console.log("formdata", formData)
+      
+
+      try{
+        const response = await axios.post("http://localhost:4000/api/v1/auth/updateProfile" , formData)
+        console.log(
+          "profile update response :", response
+        )
+
+        setProfilePicture(response?.data?.imgData?.image)
+       
+        
+      }
+      catch(error){
+        console.log("error in updating profile :", error)
+      }
+      
 
 
     }
     console.log("SelectedFile-->",selectFile)
 
     function imageHandler(){
-        dispatch(setImage(selectFile))
+      dispatch(setImage(profilePicture))
     }
     
 
@@ -32,7 +62,7 @@ const SettingImageUpload = () => {
     <div className='bg-richblack-700 w-full h-[400px]'>
         <div className='flex gap-[20px] p-[20px] '>
              <img className='w-[80px] h-[80px] rounded-full'
-              src={selectFile ? selectFile : image} alt="" />
+              src={profilePicture} alt="" />
              
 
             

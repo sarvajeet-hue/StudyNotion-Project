@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 require('dotenv').config();
 const Profile = require('../models/Profile');
+const { imageUploadToCloudinary } = require('../utils/imageUploader');
+
 
 
 
@@ -272,5 +274,48 @@ exports.changePassword = async(req , res) => {
             success : false,
             message : "Password not Updated"
         })
+    }
+}
+
+
+
+//update profile photo
+
+exports.updateProfilePhoto = async (req , res) => {
+    try {
+        console.log("req.body" , req.body)
+        console.log("req.files" , req.files)
+        const profile = req.files.file;
+        const {token} = req.body
+        console.log("Token:" , token)
+
+        const userId = req.user.Id;
+        console.log("userId" , userId)
+
+        
+
+        if(!profile){
+            return res.status(400).json({
+                success : false, 
+                message : "Image in not found"
+            })
+        }
+
+        const profile_picture = await imageUploadToCloudinary(profile , process.env.FOLDER_NAME)
+        console.log("profile_picture" , profile_picture)
+
+       
+
+        const updatedImage = await User.findByIdAndUpdate(userId ,{ image : profile_picture.secure_url } , {new : true})
+
+        res.status(200).json({
+            success : true, 
+            message : "Profile uploaded Successfully", 
+            imgData : updatedImage
+        })
+
+
+    }catch(error){
+        console.log("error while uploading profile picture :", error)
     }
 }
