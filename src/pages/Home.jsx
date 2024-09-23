@@ -14,6 +14,8 @@ import ReviewSection from '../components/core/Homepage/ReviewSection';
 import ExploreMore from '../components/core/Homepage/ExploreMore';
 import Footer from '../components/common/Footer';
 
+import { motion } from 'framer-motion';
+
 const Home = () => {
     return (
         <div >
@@ -56,7 +58,7 @@ const Home = () => {
                 {/*video Part*/}
                 <div className=' flex flex-shrink-0 mt-[100px] bg-richblack-900 shadow-blue-200'>
 
-                    <video className=" w-[1035px] h-[515px]" src={videoFile} autoPlay muted loop ></video>
+                    <motion.video initial={{y:"-100vw"}} animate={{y:0}} transition={{delay:0.5 , type:"spring" ,stiffness: 120 , duration:5}}  className=" w-[1035px] h-[515px]" src={videoFile} autoPlay muted loop ></motion.video>
                 </div>
 
                 {/*coding Part*/}
