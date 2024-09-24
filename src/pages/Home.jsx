@@ -58,7 +58,7 @@ const Home = () => {
                 {/*video Part*/}
                 <div className=' flex flex-shrink-0 mt-[100px] bg-richblack-900 shadow-blue-200'>
 
-                    <motion.video initial={{y:"-100vw"}} animate={{y:0}} transition={{delay:0.5 , type:"spring" ,stiffness: 120 , duration:5}}  className=" w-[1035px] h-[515px]" src={videoFile} autoPlay muted loop ></motion.video>
+                    <motion.video initial={{  scale:0.1}} animate={{  scale:1}} transition={{delay:0.5 ,  duration:3 , type:"spring" , stiffness:120}}  className=" w-[1035px] h-[515px]" src={videoFile} autoPlay muted loop ></motion.video>
                 </div>
 
                 {/*coding Part*/}

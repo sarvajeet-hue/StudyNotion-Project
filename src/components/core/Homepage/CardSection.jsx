@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { HiUsers } from "react-icons/hi2";
 import { TbBinaryTree2 } from "react-icons/tb";
 
-import { animate, delay, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 
 
@@ -32,6 +32,7 @@ const CardSection = ({course , currentCard}) => {
 
   const [isVisible , setIsVisible] = useState(false)
   const ref = useRef();
+  
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) =>{
@@ -42,6 +43,7 @@ const CardSection = ({course , currentCard}) => {
     })
 
     if(ref.current){
+      console.log("ref.current:", ref.current)
       observer.observe(ref.current)
     }
     return () => observer.disconnect(); 
