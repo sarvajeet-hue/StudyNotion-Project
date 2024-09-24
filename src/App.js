@@ -16,15 +16,21 @@ import Setting from "./DashboardPage/setting/Setting";
 import Enrolled_Courses from "./DashboardPage/Courses/Enrolled_Courses";
 import Purchase_history from "./DashboardPage/Purchase-history/Purchase_history";
 import { CourseCreate } from "./DashboardPage/CreateCourses/CourseCreate";
+import background from '../src/assets/Images/background.jpg'
 
 const FirstLoadAnimation = () => {
   return (
     <motion.div
+    style={{
+      backgroundImage: `url(${background})`,
+      backgroundSize: 'cover',   // Ensures the image covers the entire div
+      backgroundPosition: 'center',  // Centers the image
+    }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 1.5, ease: "easeInOut" }} // Animation lasts 1.5 seconds
-      className="w-screen h-screen flex items-center justify-center bg-white"
+      className={`w-screen h-screen flex items-center justify-center `}
     >
       <motion.div
         alt="Instructor"
@@ -34,10 +40,10 @@ const FirstLoadAnimation = () => {
         transition={{ duration: 1.5, ease: "easeInOut" }}
       >
         <div className="flex flex-col items-center justify-center gap-4">
-          <h1 className="text-black font-bold text-[40px] font-inter">
+          <h1 className="text-white font-bold text-[40px] ">
             StudyNotion
           </h1>
-          <h1 className=" font-bold text-[40px] font-inter text-blue-300">
+          <h1 className=" font-bold text-[40px] font-inter text-white">
             Made by Sarvajeet
           </h1>
         </div>
