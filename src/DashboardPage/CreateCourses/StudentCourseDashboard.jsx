@@ -1,12 +1,8 @@
-import React, { useEffect , useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getallcourses } from "../../services/operations/apicalls";
-
-
+import { CourseSection } from "./CourseSection";
 
 export const StudentCourseDashboard = () => {
-
-
- 
   const [courseDetails, setCourseDetails] = useState([]);
   console.log("courseDetails:", courseDetails);
 
@@ -27,40 +23,15 @@ export const StudentCourseDashboard = () => {
   return (
     <div>
       <div className="text-white w-[1073px] h-[auto] flex flex-col p-6">
-        <div className="grid grid-cols-3 gap-5">
-          {courseDetails.map((data, index) => {
-            return (
-              <div
-                className="flex flex-col rounded-lg border h-full "
-                key={index}
-              >
-                <div>
-                  <img
-                    src={data.thumNail}
-                    className="h-[200px] w-full object-fill"
-                    alt=""
-                  />
-                </div>
-
-                <div className="flex flex-col items-start gap-3 mt-4">
-                  <p> Course Name : {data?.courseName}</p>
-                  <p> course Category : {data?.category?.description}</p>
-
-                  <p> what you will learn : {data?.WhatYouWillLearn}</p>
-                  <p>Instructor Name : {data?.instructor?.firstname}</p>
-
-                  <p className="font-semibold">
-                    Price :{" "}
-                    <span className="text-caribbeangreen-200">
-                      {" "}
-                      ₹{data?.Price}
-                    </span>
-                  </p>
-                </div>
-              </div>
-            );
-          })}
+        <div className="flex items-center justify-between">
+          <div>COURSES</div>
+          <div className="flex items-center justify-center gap-8">
+            <p>DURATION</p>
+            <p>PRICE</p>
+            <p>ACTIONS</p>
+          </div>
         </div>
+        <CourseSection courseDetails={courseDetails} />
       </div>
     </div>
   );

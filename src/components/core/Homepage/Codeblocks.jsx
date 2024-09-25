@@ -78,7 +78,7 @@ const Codeblocks = ({
         <div>{/*eclipse*/}</div>
 
         <div className="flex flex-row items-start gap-2 p-2  self-stretch">
-          <div className="text-center flex flex-col w-[10%] select-none text-richblack-400 font-inter font-bold ">
+          <div className="text-center flex flex-col w-[10%] select-none text-richblack-400 font-inter font-bold  ">
             <p>1</p>
             <p>2</p>
             <p>3</p>
@@ -90,6 +90,7 @@ const Codeblocks = ({
             <p>9</p>
             <p>10</p>
             <p>11</p>
+            <p>12</p>
           </div>
 
           <div
@@ -97,11 +98,13 @@ const Codeblocks = ({
           >
             <TypeAnimation
               sequence={[codeblock, 1000, ""]}
+              
               cursor={true}
               repeat={Infinity}
               style={{
                 whiteSpace: "pre-line",
                 display: "block",
+                
               }}
               omitDeletionAnimation={true}
             />

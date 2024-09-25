@@ -4,6 +4,8 @@ import CTAButton from "../../components/core/Homepage/CTAButton";
 import { IoAddCircleOutline } from "react-icons/io5";
 
 import { getallcourses } from "../../services/operations/apicalls";
+import { CourseSection } from "./CourseSection";
+
 
 export const InstructorCourseDashboard = () => {
   const location = useLocation();
@@ -25,7 +27,7 @@ export const InstructorCourseDashboard = () => {
     fetchArrays();
   }, []);
   return (
-    <div className="flex flex-col   gap-4">
+    <div className="flex flex-col  gap-4">
       <div>
         {location.pathname === "/dashboard/courses/createCourses" ? (
           <Outlet />
@@ -43,7 +45,7 @@ export const InstructorCourseDashboard = () => {
             </div>
 
             <div className="text-white w-[1073px] h-[auto] flex flex-col p-6">
-              <div className="grid grid-cols-3 gap-5">
+              {/* <div className="grid grid-cols-3 gap-5">
                 {courseDetails.map((data, index) => {
                   return (
                     <div
@@ -70,9 +72,23 @@ export const InstructorCourseDashboard = () => {
                     </div>
                   );
                 })}
+              </div> */}
+              <div className="flex items-center justify-between">
+                <div>COURSES</div>
+                <div className="flex items-center justify-center gap-8">
+                  <p>DURATION</p>
+                  <p>PRICE</p>
+                  <p>ACTIONS</p>
+                </div>
+              </div>
+
+              <div className="flex flex-col items-center ">
+               
+                  <CourseSection courseDetails={courseDetails}/>
+                </div>
               </div>
             </div>
-          </div>
+          
         )}
       </div>
     </div>
