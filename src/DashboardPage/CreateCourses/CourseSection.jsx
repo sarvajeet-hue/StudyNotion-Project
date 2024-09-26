@@ -36,7 +36,7 @@ export const CourseSection = ({ courseDetails }) => {
 
     // Open Razorpay Checkout
     const options = {
-      key: "rzp_test_9McW67FcYiQo8V", // Replace with your Razorpay key_id
+      key: process.env.RAZORPAY_KEY, // Replace with your Razorpay key_id
       amount: "50000", // Amount in paise
       currency: "INR",
       name: "Sarvajeet Singh",
