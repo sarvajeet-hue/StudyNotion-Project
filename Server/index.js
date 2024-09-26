@@ -38,6 +38,7 @@ const { dbConnect } = require("./config/database");
 dbConnect();
 // connect with cloudinary
 const { cloudinaryConnect } = require("./config/cloudinary");
+
 cloudinaryConnect();
 
 //mounting routes
@@ -60,6 +61,7 @@ app.get("/", (req, res) => {
 
 app.post("/order", async (req, res) => {
   try {
+  
 
     const options = req.body;
     console.log("options:", options)

@@ -25,7 +25,7 @@ export const CourseSection = ({ courseDetails }) => {
   async function paymentFunction() {
     
     const body = {
-      amount: "500",
+      amount: "50000",
       currency: "INR",
       receipt: "qwsaq1",
     };
@@ -36,8 +36,8 @@ export const CourseSection = ({ courseDetails }) => {
 
     // Open Razorpay Checkout
     const options = {
-      key: "rzp_test_fQhR9svkWLn9Xb", // Replace with your Razorpay key_id
-      amount: "5000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      key: "rzp_test_9McW67FcYiQo8V", // Replace with your Razorpay key_id
+      amount: "50000", // Amount in paise
       currency: "INR",
       name: "Sarvajeet Singh",
       description: "Test Transaction",
@@ -49,11 +49,19 @@ export const CourseSection = ({ courseDetails }) => {
         contact: "9999999999",
       },
       theme: {
-        color: "#F37254",
+        color: "blue",
       },
+      method: {
+        card: true,
+        netbanking: true,
+        wallet: true,
+        upi: true, // Enables UPI option
+        qr: true,  // Enables QR code payment option
+      }
     };
 
     const paymentObject = new window.Razorpay(options);
+    console.log("paymentObject:", paymentObject)
     paymentObject.open();
   }
 
@@ -70,7 +78,7 @@ export const CourseSection = ({ courseDetails }) => {
                   alt=""
                 />
 
-                <div className="flex items-center justify-center gap-14">
+                <div className="flex items-center justify-center gap-10">
                   <p>20h 10m</p>
                   <p>{data.Price}</p>
                   <div>
