@@ -45,7 +45,7 @@ cloudinaryConnect();
 app.use("/api/v1/auth", UserRoutes);
 app.use("/api/v1/profile", profileRoutes);
 app.use("/api/v1/course", courseRoutes);
-app.use("/api/v1/payment", paymentRoutes);
+app.use("/api/v1", paymentRoutes);
 app.use("/api/v1", ContactRoutes);
 
 app.listen(port, () => {
@@ -86,3 +86,13 @@ app.post("/order", async (req, res) => {
     console.log("error in creating the order", error);
   }
 });
+
+
+app.post("/payment-success" , async(req , res) => {
+  try{
+    res.send('payment successfull')
+  }catch(error){
+    console.log("error in payment-success :" , error)
+  }
+})
+ 

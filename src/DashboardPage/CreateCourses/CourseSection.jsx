@@ -1,68 +1,68 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import CTAButton from "../../components/core/Homepage/CTAButton";
+import { PrimaryButton } from "../../components/core/Homepage/CTAButton";
 import axios from "axios";
 import { useState } from "react";
 
 export const CourseSection = ({ courseDetails }) => {
   const { user } = useSelector((state) => state.user);
-  const [order, setOrder] = useState(null);
+  const [paymentId , setPaymentId] = useState(null)
 
-  function loadScript(src) {
-    return new Promise((resolve) => {
-      const script = document.createElement('script')
-      script.src = src
-      script.onload = () => {
-        resolve(true)
-      }
-      script.onerror = () => {
-        resolve(false)
-      }
-      document.body.appendChild(script)
-    })
-  }
-
-  async function paymentFunction() {
+  const [paymentIndex , setPaymentIndex] = useState(null)
+  
+  async function paymentFunction(index) {
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     
-    const body = {
-      amount: "50000",
-      currency: "INR",
-      receipt: "qwsaq1",
-    };
-    const response = await axios.post("http://localhost:4000/order", body);
-    // Create order by calling the server endpoint
-    const order = response?.data?.order;
-    setOrder(response?.data?.order);
+    try {
+      const course_id = courseDetails[index]?._id;
+      const token = user.token;
 
-    // Open Razorpay Checkout
-    const options = {
-      key: process.env.RAZORPAY_KEY, // Replace with your Razorpay key_id
-      amount: "50000", // Amount in paise
-      currency: "INR",
-      name: "Sarvajeet Singh",
-      description: "Test Transaction",
-      order_id: order.id, // This is the order_id created in the backend
-      callback_url: "http://localhost:3000/payment-success", // Your success URL
-      prefill: {
-        name: "Sarvajeet Singh",
-        email: "krishnasingh296855925@gmail.com",
-        contact: "9999999999",
-      },
-      theme: {
-        color: "blue",
-      },
-      method: {
-        card: true,
-        netbanking: true,
-        wallet: true,
-        upi: true, // Enables UPI option
-        qr: true,  // Enables QR code payment option
-      }
-    };
+      const PaymentOrderID = await axios.post(
+        "http://localhost:4000/api/v1/payment",
+        { course_id, token }
+      );
+      console.log("PaymentOrder:", PaymentOrderID);
 
-    const paymentObject = new window.Razorpay(options);
-    console.log("paymentObject:", paymentObject)
-    paymentObject.open();
+      
+
+      const options = {
+        key: "rzp_test_9McW67FcYiQo8V", // Replace with your Razorpay key
+        amount: PaymentOrderID?.data?.amount, // Amount in paise
+        currency: PaymentOrderID?.data?.currency,
+        name: "Your App Name",
+        description: "Test Transaction",
+        handler: async function (response) {
+          console.log("Payment successful:", response?.razorpay_payment_id);
+          setPaymentId(response?.razorpay_payment_id)
+          setPaymentIndex(index)
+          
+
+          // You can add further logic here after a successful payment
+        },
+        prefill: {
+          name: "John Doe",
+          email: "john@example.com",
+          contact: "9999999999",
+        },
+        theme: {
+          color: "#F37254",
+        },
+      
+      };
+      console.log(options)
+    
+      const rzp1 = new window.Razorpay(options);
+    
+   
+    
+      rzp1.open();
+
+     
+    } catch (error) {
+      console.log("error:", error);
+    }
+    
+    
   }
 
   return (
@@ -88,9 +88,15 @@ export const CourseSection = ({ courseDetails }) => {
                         <p>Delete</p>
                       </div>
                     ) : (
-                      <CTAButton onClick={paymentFunction} active={true}>
-                        Buy
-                      </CTAButton>
+                      <PrimaryButton
+                        key={index}
+                        active={true}
+                        onClick={ () => paymentFunction(index)}
+                      >
+                        {
+                            paymentIndex === index ? "Purchased" : "Buy"
+                        }
+                      </PrimaryButton>
                     )}
                   </div>
                 </div>
