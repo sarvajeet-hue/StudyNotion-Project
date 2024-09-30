@@ -25,8 +25,8 @@ export default CTAButton;
 
 
 
-export const PrimaryButton = ( {children, active, linkto , onClick}) => {
-  return <button onClick={onClick}>
+export const PrimaryButton = ( {children, active, disabled , onClick}) => {
+  return <button disabled={disabled} onClick={onClick}>
         <div
           className={`flex items-center px-[24px] gap-[8px] py-[12px] border rounded-lg shadow-md leading-6 font-medium
             ${

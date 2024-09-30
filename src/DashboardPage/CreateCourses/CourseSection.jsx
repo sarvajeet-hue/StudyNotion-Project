@@ -1,21 +1,28 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { PrimaryButton } from "../../components/core/Homepage/CTAButton";
 import axios from "axios";
 import { useState } from "react";
+import { setUser } from "../../Slices/UserSlice";
+import { setPurchasedHistory } from "../../Slices/purchasedHistory";
 
 export const CourseSection = ({ courseDetails }) => {
-  const { user } = useSelector((state) => state.user);
-  const [paymentId , setPaymentId] = useState(null)
+  const { token } = useSelector((state) => state.auth);
+  const {user} = useSelector((state) => state.user)
 
-  const [paymentIndex , setPaymentIndex] = useState(null)
+
+ 
+
+  const dispatch = useDispatch()
   
+
+ 
   async function paymentFunction(index) {
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     
     try {
       const course_id = courseDetails[index]?._id;
-      const token = user.token;
+      
 
       const PaymentOrderID = await axios.post(
         "http://localhost:4000/api/v1/payment",
@@ -29,12 +36,12 @@ export const CourseSection = ({ courseDetails }) => {
         key: "rzp_test_9McW67FcYiQo8V", // Replace with your Razorpay key
         amount: PaymentOrderID?.data?.amount, // Amount in paise
         currency: PaymentOrderID?.data?.currency,
-        name: "Your App Name",
-        description: "Test Transaction",
+        name: "StudyNotion",
+        description: "Ed Tech Platform",
         handler: async function (response) {
           console.log("Payment successful:", response?.razorpay_payment_id);
-          setPaymentId(response?.razorpay_payment_id)
-          setPaymentIndex(index)
+          dispatch(setUser(PaymentOrderID?.data?.user))
+          
           
 
           // You can add further logic here after a successful payment
@@ -65,10 +72,19 @@ export const CourseSection = ({ courseDetails }) => {
     
   }
 
+  const isCoursePurchased = (courseId , data) => {
+    console.log("user current :" , user)
+    console.log("courseId" , courseId) 
+    console.log("user in coursePurchased:", user?.courses.includes(courseId))
+    dispatch(setPurchasedHistory(data))
+    return user?.courses.includes(courseId);
+  };
+
   return (
     <div className="w-full">
       <div className="w-full">
         {courseDetails.map((data, index) => {
+            
           return (
             <div key={index} className="flex items-center flex-col w-full">
               <div className="flex items-center justify-between w-full">
@@ -82,7 +98,7 @@ export const CourseSection = ({ courseDetails }) => {
                   <p>20h 10m</p>
                   <p>{data.Price}</p>
                   <div>
-                    {user.accountType === "Instructor" ? (
+                    {user?.accountType === "Instructor" ? (
                       <div>
                         <p>Edit</p>
                         <p>Delete</p>
@@ -92,9 +108,10 @@ export const CourseSection = ({ courseDetails }) => {
                         key={index}
                         active={true}
                         onClick={ () => paymentFunction(index)}
+                        disabled={isCoursePurchased(data._id) }
                       >
                         {
-                            paymentIndex === index ? "Purchased" : "Buy"
+                            isCoursePurchased(data._id , data) ? "Purchased" : "Buy"
                         }
                       </PrimaryButton>
                     )}

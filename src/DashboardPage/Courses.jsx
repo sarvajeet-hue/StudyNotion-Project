@@ -12,7 +12,7 @@ const Courses = () => {
   console.log(location.pathname);
   return (
     <div>
-      {user.accountType === "Instructor" ? (
+      {user?.accountType === "Instructor" ? (
         <InstructorCourseDashboard />
       ) : (
         <StudentCourseDashboard />

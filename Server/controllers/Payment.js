@@ -69,8 +69,14 @@ exports.capturePayment = async (req, res) => {
       const paymentResponse = await instance.orders.create(options);
       console.log("paymentResponse", paymentResponse);
 
-
-      
+      const updatedUserCourse = await User.findByIdAndUpdate(
+        userId,
+        {
+          $push: { courses: paymentResponse?.notes?.courseId },
+        },
+        { new: true }
+      );
+      console.log("updatedUserCourse:", updatedUserCourse);
 
       res.status(200).json({
         success: true,
@@ -83,6 +89,7 @@ exports.capturePayment = async (req, res) => {
         notes,
         orderId: paymentResponse.id,
         thumnail: course.thumNail,
+        user : updatedUserCourse
       });
     } catch (error) {
       console.log(error);

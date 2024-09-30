@@ -65,7 +65,7 @@ const Sidebar = () => {
 
   return (
     <div className="flex flex-col relative overflow-y-hidden gap-[10px] border-richblack-700 bg-richblack-800 border-r-2 w-[222px] h-calc(100vh-70px) py-[30px]">
-      {user.accountType === "Instructor" ? (
+      {user?.accountType === "Instructor" ? (
         <p className="text-center">Instructor</p>
       ) : (
         <p className="text-center">Student</p>
