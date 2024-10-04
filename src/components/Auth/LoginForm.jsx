@@ -16,7 +16,7 @@ const LoginForm = () => {
    
   const [accountType , setAccountType] = useState(ACCOUNT_TYPE.STUDENT);
     const dispatch = useDispatch();
-    const {register , formState : {errors} , handleSubmit} = useForm();
+    const {register , handleSubmit} = useForm();
 
 
     const navigate = useNavigate();
@@ -30,7 +30,7 @@ const LoginForm = () => {
     const tabData = [
       {
         id: 1,
-        tabName: "Student",
+        tabName: "Student", 
         type: ACCOUNT_TYPE.STUDENT,
       },
       {

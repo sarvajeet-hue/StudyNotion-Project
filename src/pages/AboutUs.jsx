@@ -40,7 +40,7 @@ const AboutUs = () => {
             {/* aboutus */}
             
             <div className='flex flex-col gap-[38px] items-center' >
-                <p className='py-2 px-[18px] rounded-[100px] text-richblack-200'>About Us</p>
+                <p className='py-2 px-[18px] rounded-[100px] text-richblack-200 text-[45px] font-bold'>About Us</p>
 
                 <div className='flex flex-col gap-4 items-center px-[52px]' >
                     <p className='text-richblack-5 text-4xl font-semibold font-inter text-center'>Driving Innovation in Online Education for a <HighlightText text={"Brighter Future"}/></p>
