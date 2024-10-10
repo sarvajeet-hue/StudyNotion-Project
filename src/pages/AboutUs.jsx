@@ -124,7 +124,7 @@ const AboutUs = () => {
             <div className='flex items-center gap-3 w-full'>
                 {
                     Data.map((data ,index) => {
-                        return <div className='flex flex-col items-center justify-center gap-3 w-[293px]'>
+                        return <div key={index} className='flex flex-col items-center justify-center gap-3 w-[293px]'>
                             <p className='text-4xl text-richblack-5 font-inter font-semibold leading-5'>{data.title}</p>
                             <p className='text-[16px] font-medium text-richblack-300 leading-6'>{data.value}</p>
                         </div>
