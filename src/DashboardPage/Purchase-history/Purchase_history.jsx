@@ -6,7 +6,7 @@ const Purchase_history = () => {
   console.log("PurchasedHistory", purchasedHistory);
   return (
     <div>
-      <div  className="flex  border rounded-md p-5 gap-10 ">
+      <div className="flex border rounded-md p-5 gap-10 ">
         <img
           src={purchasedHistory.thumNail}
           alt=""
@@ -17,10 +17,10 @@ const Purchase_history = () => {
           <p>Course Name : {purchasedHistory.courseName}</p>
           <p>{purchasedHistory.WhatYouWillLearn}</p>
           <p> Price : ${purchasedHistory.Price}</p>
+          
         </div>
       </div>
-    
-    </div>  
+    </div>
   );
 };
 
