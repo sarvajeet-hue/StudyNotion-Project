@@ -14,14 +14,19 @@ import ExploreMore from "../components/core/Homepage/ExploreMore";
 import Footer from "../components/common/Footer";
 
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
 
 const Home = () => {
+  const {token} = useSelector((state) => state.auth)
+  
   return (
     <div>
       {/*section- 1*/}
 
       <div className="relative mx-auto flex flex-col w-11/12 items-center justify-between max-w-maxContent">
         <div className="w-[913px] h-[276px] flex flex-col items-center justify-between  text-white gap-[38px] mt-[124px] ">
+
+          
           <Link to={"/signup"}>
             <div className=" group flex p-1 gap-1 items-start border rounded-[500px] bg-richblack-800 ">
               <div

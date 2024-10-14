@@ -113,8 +113,8 @@ const Navbar = () => {
 
         {user ? (
           <div className="flex  justify-end items-center gap-5 text-richblack-5">
-            <CiSearch className="w-[20px] h-[20px]" />
-            <AiOutlineShoppingCart className="w-[20px] h-[20px]" />
+            <CiSearch  className="w-[20px] h-[20px]" />
+            <AiOutlineShoppingCart  onClick={() => navigate("/dashboard/purchase-history")} className="w-[20px] h-[20px] cursor-pointer" />
 
             <Dropdown
                 style={{border : "none"}}
@@ -124,7 +124,7 @@ const Navbar = () => {
               label={
                 <div className="">
                   <img
-                    className="rounded-full bg-white h-[20px] w-[20px] object-contain "
+                    className="rounded-full bg-white h-[40px] w-[40px] object-contain "
                     src={image}
                     alt=""
                   />
