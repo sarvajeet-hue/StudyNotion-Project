@@ -13,6 +13,7 @@ const Signup = () => {
         formType={"signup"}
       />
         
+        <button className='text-white'>Google</button>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../../assets/Logo/Logo-Full-Light.png";
 
+
 import { NavbarLinks } from "../../data/navbar-links";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
@@ -10,9 +11,10 @@ import { IoIosArrowDown } from "react-icons/io";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../Slices/UserSlice";
-import { Avatar, Dropdown } from "flowbite-react";
+
 import { HiLogout, HiViewGrid } from "react-icons/hi";
 import toast from "react-hot-toast";
+import { Dropdown } from "flowbite-react";
 
 const Navbar = () => {
   //here we can use matchPath function in react router dom also
